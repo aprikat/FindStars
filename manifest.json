@@ -7,7 +7,7 @@
   },
   "browser_action": {
     "default_popup": "popup.html",
-    "default_icon":"icon.png"
+    "default_icon":"fivestars_small.png"
   },
   "manifest_version" : 2,
   "permissions": [
@@ -20,5 +20,9 @@
     "matches": ["https://www.yelp.com/*", "http://www.yelp.com/*"],
     "js": ["jquery.js", "contentscript.js"]
   }],
-  "web_accessible_resources": ["banner.js"]
+  "web_accessible_resources": [
+    "banner.js", 
+    "banner.html", 
+    "http://use.typekit.net/ajv5hqw.js", 
+    "fivestars_logo_login_white.png"]
 }

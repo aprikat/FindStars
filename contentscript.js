@@ -33,7 +33,7 @@ $.getJSON(fs_url, function( data ) {
   });
   $.each(stuff, function(key, val) {
   	if (key == "businesses") {
-  		businesses = val;	// will be [] if none found, otherwise [{"address": "asdf", "name": "asdf"}]
+  		businesses = val;	// will be [] if none found, otherwise [{"address": "asdf", "name": "asdf"}, {"address2": "asdf"}]
   	}
   });
   if (businesses.length == 0) {
@@ -42,17 +42,35 @@ $.getJSON(fs_url, function( data ) {
   else {
     match = businesses[0]["name"];
     injectBanner(match); 
+    // loadImageIntoBanner();
   }
 });
 
 function injectBanner(bus_name) {
   alert(bus_name + " is a FiveStars location!");
+
+  $.get(chrome.extension.getURL('banner.html'), function(data) {
+    $(data).appendTo('head');
+    // Or if you're using jQuery 1.8+:
+    // $($.parseHTML(data)).appendTo('body');
+  });
+
   var s = document.createElement('script');
   s.src = chrome.extension.getURL('banner.js');
   s.onload = function() {
       this.parentNode.removeChild(this);
   };
   (document.head||document.documentElement).appendChild(s);
+
+  
+}
+
+function loadImageIntoBanner() {
+  $(document).ready(function(){
+    var logo_url = chrome.extension.getURL('fivestars_logo_login_white.png'); 
+    console.log(logo_url);
+    $("#FS-banner").append("<img src='" + logo_url + "'></img>");
+  });
 }
 
 
