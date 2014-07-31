@@ -1,0 +1,23 @@
+{
+  "name": "FindStars",
+  "version": "1.0",
+  "description": "Browser extension to indicate whether a Yelp business accepts FiveStars",
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon":"icon.png"
+  },
+  "manifest_version" : 2,
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "http://www.yelp.com/*",
+    "https://www.yelp.com/*"
+  ],
+  "content_scripts": [{
+    "matches": ["https://www.yelp.com/*", "http://www.yelp.com/*"],
+    "js": ["jquery.js", "contentscript.js"]
+  }]
+}

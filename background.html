@@ -1,0 +1,14 @@
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="banner.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+	// chrome.tabs.executeScript(null, {file:"banner.js"});
+	chrome.extension.onMessage.addListener(function(message) {
+    	postMessage({extensionMessage: message}, '*');
+	});
+	</script>
+</body>
+</html>
