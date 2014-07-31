@@ -42,19 +42,21 @@ $.getJSON(fs_url, function( data ) {
   else {
     match = businesses[0]["name"];
     injectBanner(match); 
-    // loadImageIntoBanner();
+    // styleBanner();
   }
 });
 
 function injectBanner(bus_name) {
-  alert(bus_name + " is a FiveStars location!");
+  // alert(bus_name + " is a FiveStars location!");
 
+  // add montserrat and typekit
   $.get(chrome.extension.getURL('banner.html'), function(data) {
     $(data).appendTo('head');
     // Or if you're using jQuery 1.8+:
     // $($.parseHTML(data)).appendTo('body');
   });
 
+  // add FS-banner and FS-banner styling
   var s = document.createElement('script');
   s.src = chrome.extension.getURL('banner.js');
   s.onload = function() {
@@ -62,7 +64,11 @@ function injectBanner(bus_name) {
   };
   (document.head||document.documentElement).appendChild(s);
 
-  
+}
+
+function styleBanner() {
+  $("#FS-banner").css("font-family", "montserrat");
+  $("#FS-banner").css("display", "block");
 }
 
 function loadImageIntoBanner() {
@@ -72,6 +78,9 @@ function loadImageIntoBanner() {
     $("#FS-banner").append("<img src='" + logo_url + "'></img>");
   });
 }
+
+$("#FS-banner").css("font-family", "montserrat");
+$("#FS-banner").css("display", "block");
 
 
 
