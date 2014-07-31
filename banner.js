@@ -1,5 +1,2 @@
-addEventListener('message', function(event) {
-    if (event.data && event.data.extensionMessage) {
-        alert("hello from banner.js");
-    }
-});
+alert("hello");
+document.body.style.backgroundColor="blue";

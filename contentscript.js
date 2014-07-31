@@ -47,11 +47,12 @@ $.getJSON(fs_url, function( data ) {
 
 function injectBanner(bus_name) {
   alert(bus_name + " is a FiveStars location!");
-  // chrome.tabs.onUpdated.addListener(function(tabId, changeInfo,tab) {
-    chrome.tabs.executeScript({
-      code: 'alert("wooowww2")'
-    })
-  // });
+  var s = document.createElement('script');
+  s.src = chrome.extension.getURL('banner.js');
+  s.onload = function() {
+      this.parentNode.removeChild(this);
+  };
+  (document.head||document.documentElement).appendChild(s);
 }
 
 

@@ -19,5 +19,6 @@
   "content_scripts": [{
     "matches": ["https://www.yelp.com/*", "http://www.yelp.com/*"],
     "js": ["jquery.js", "contentscript.js"]
-  }]
+  }],
+  "web_accessible_resources": ["banner.js"]
 }
