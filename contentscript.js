@@ -37,7 +37,7 @@ $.getJSON(fs_url, function( data ) {
   	}
   });
   if (businesses.length == 0) {
-  	alert("This business is not a FiveStars location. Request it here!");
+  	injectOtherBanner();
   }
   else {
     match = businesses[0]["name"];
@@ -66,6 +66,26 @@ function injectBanner(bus_name) {
 
 }
 
+function injectOtherBanner() {
+  // alert(bus_name + " is not a FiveStars location! Request it here");
+
+  // add montserrat and typekit
+  $.get(chrome.extension.getURL('banner.html'), function(data) {
+    $(data).appendTo('head');
+    // Or if you're using jQuery 1.8+:
+    // $($.parseHTML(data)).appendTo('body');
+  });
+
+  // add FS-banner and FS-banner styling
+  var s = document.createElement('script');
+  s.src = chrome.extension.getURL('otherbanner.js');
+  s.onload = function() {
+      this.parentNode.removeChild(this);
+  };
+  (document.head||document.documentElement).appendChild(s);
+
+}
+
 function styleBanner() {
   $("#FS-banner").css("font-family", "montserrat");
   $("#FS-banner").css("display", "block");
@@ -78,9 +98,6 @@ function loadImageIntoBanner() {
     $("#FS-banner").append("<img src='" + logo_url + "'></img>");
   });
 }
-
-$("#FS-banner").css("font-family", "montserrat");
-$("#FS-banner").css("display", "block");
 
 
 

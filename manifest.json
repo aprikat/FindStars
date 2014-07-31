@@ -22,6 +22,7 @@
   }],
   "web_accessible_resources": [
     "banner.js", 
+    "otherbanner.js",
     "banner.html", 
     "http://use.typekit.net/ajv5hqw.js", 
     "fivestars_logo_login_white.png"]
