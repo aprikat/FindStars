@@ -17,8 +17,8 @@ var business_long = map_json.longitude;
 // url manipulation
 // http://www.fivestars.com/api/v2/businesses?near=37.7758,-122.4128&span=0.025,0.025&q=little%20griddle
 var fs_url = "http://www.fivestars.com/api/v2/businesses?";
-var business_name = business_name.replace(' ', '%20');
-fs_url = fs_url.concat("q=" + business_name);
+var business_name_q = business_name.replace(' ', '%20');
+fs_url = fs_url.concat("q=" + business_name_q);
 fs_url = fs_url.concat("&near=" + business_lat + "," + business_long);
 fs_url = fs_url.concat("&span=0.05,0.05");
 
@@ -36,13 +36,19 @@ $.getJSON(fs_url, function( data ) {
   		businesses = val;	// will be [] if none found, otherwise [{"address": "asdf", "name": "asdf"}, {"address2": "asdf"}]
   	}
   });
-  if (businesses.length == 0) {
-  	injectOtherBanner();
+  // var business1 = businesses[0];
+  // $.each(business1, function(key, val) {
+    // console.log(key + ": " + val);
+  // });
+  match = businesses[0]["name"];
+  match = match.toLowerCase().trim();
+  business_name = business_name.toLowerCase().trim();
+
+  if ((businesses.length > 0) && (match == business_name)) {   
+    injectBanner();
   }
   else {
-    match = businesses[0]["name"];
-    injectBanner(match); 
-    // styleBanner();
+    injectOtherBanner();
   }
 });
 
