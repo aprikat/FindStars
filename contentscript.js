@@ -56,45 +56,41 @@ function injectBanner(bus_name) {
   // alert(bus_name + " is a FiveStars location!");
 
   // add montserrat and typekit
-  $.get(chrome.extension.getURL('banner.html'), function(data) {
+  $.get(chrome.extension.getURL('banner-styling.html'), function(data) {
     $(data).appendTo('head');
+    console.log("successfully injected banner styling");
     // Or if you're using jQuery 1.8+:
     // $($.parseHTML(data)).appendTo('body');
   });
 
+  $.get(chrome.extension.getURL('banner.html'), function(data) {
+    $(data).insertAfter('.app-header');
+  });
+
   // add FS-banner and FS-banner styling
+  /* 
   var s = document.createElement('script');
   s.src = chrome.extension.getURL('banner.js');
   s.onload = function() {
       this.parentNode.removeChild(this);
   };
   (document.head||document.documentElement).appendChild(s);
+  */
 
 }
 
 function injectOtherBanner() {
   // alert(bus_name + " is not a FiveStars location! Request it here");
 
-  // add montserrat and typekit
-  $.get(chrome.extension.getURL('banner.html'), function(data) {
+ // add montserrat and typekit
+  $.get(chrome.extension.getURL('banner-styling.html'), function(data) {
     $(data).appendTo('head');
-    // Or if you're using jQuery 1.8+:
-    // $($.parseHTML(data)).appendTo('body');
   });
 
-  // add FS-banner and FS-banner styling
-  var s = document.createElement('script');
-  s.src = chrome.extension.getURL('otherbanner.js');
-  s.onload = function() {
-      this.parentNode.removeChild(this);
-  };
-  (document.head||document.documentElement).appendChild(s);
+   $.get(chrome.extension.getURL('otherbanner.html'), function(data) {
+    $(data).insertAfter('.app-header');
+  });
 
-}
-
-function styleBanner() {
-  $("#FS-banner").css("font-family", "montserrat");
-  $("#FS-banner").css("display", "block");
 }
 
 function loadImageIntoBanner() {

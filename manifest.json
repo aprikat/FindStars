@@ -21,9 +21,9 @@
     "js": ["jquery.js", "contentscript.js"]
   }],
   "web_accessible_resources": [
-    "banner.js", 
-    "otherbanner.js",
     "banner.html", 
+    "otherbanner.html",
+    "banner-styling.html",
     "http://use.typekit.net/ajv5hqw.js", 
     "fivestars_logo_login_white.png"]
 }
