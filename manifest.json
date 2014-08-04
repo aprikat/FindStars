@@ -1,5 +1,5 @@
 {
-  "name": "FindStars",
+  "name": "FiveStarred",
   "version": "1.0",
   "description": "Browser extension to indicate whether a Yelp business accepts FiveStars",
   "background": {
