@@ -58,13 +58,12 @@ function injectBanner(bus_name) {
   // add montserrat and typekit
   $.get(chrome.extension.getURL('banner-styling.html'), function(data) {
     $(data).appendTo('head');
-    console.log("successfully injected banner styling");
     // Or if you're using jQuery 1.8+:
     // $($.parseHTML(data)).appendTo('body');
   });
 
   $.get(chrome.extension.getURL('banner.html'), function(data) {
-    $(data).insertAfter('.app-header');
+    $(data).insertBefore('.app-header');
   });
 
   // add FS-banner and FS-banner styling
@@ -88,7 +87,7 @@ function injectOtherBanner() {
   });
 
    $.get(chrome.extension.getURL('otherbanner.html'), function(data) {
-    $(data).insertAfter('.app-header');
+    $(data).insertBefore('.app-header');
   });
 
 }
