@@ -14,16 +14,18 @@
     "tabs",
     "activeTab",
     "http://www.yelp.com/*",
-    "https://www.yelp.com/*"
+    "https://www.yelp.com/*",
+    "http://fivestarred-api.herokuapp.com/*",
+    "https://fivestarred-api.herokuapp.com/*"
   ],
   "content_scripts": [{
     "matches": ["https://www.yelp.com/*", "http://www.yelp.com/*"],
     "js": ["jquery.js", "contentscript.js"]
   }],
   "web_accessible_resources": [
-    "banner.html", 
+    "banner.html",
     "otherbanner.html",
     "banner-styling.html",
-    "http://use.typekit.net/ajv5hqw.js", 
+    "http://use.typekit.net/ajv5hqw.js",
     "fivestars_logo_login_white.png"]
 }

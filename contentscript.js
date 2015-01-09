@@ -1,5 +1,16 @@
 console.log("hi there!");
 
+// var CONSUMER_KEY = "mYdNi3p9GNV2w0zBMLlZvA";
+// var CONSUMER_SECRET = "OJKy4pOgbsOqJRcJlTPXGxnkq2I";
+// var TOKEN = "KPTO5PHLm1s1P19H4lDhFTtlNlHe";
+// var TOKEN_SECRET = "yD9lEvUmH6R9csMTqbv5xdeDW3w";
+
+// var test_url = "http://api.yelp.com/v2/business/bestia-los-angeles";
+
+// $.getJSON(test_url, function( data ) {
+//   console.log(data);
+// });
+
 var business_name = $(".biz-page-title").text().trim();
 
 // atrocious hax to get lat/long
@@ -44,10 +55,13 @@ $.getJSON(fs_url, function( data ) {
   match = match.toLowerCase().trim();
   business_name = business_name.toLowerCase().trim();
 
-  if ((businesses.length > 0) && (match == business_name)) {   
+  if ((businesses.length > 0) && (match == business_name)) {
     injectBanner();
   }
   else {
+    console.log(business_name);
+    api_business_name = business_name.replace(' ', '-');
+    console.log(api_business_name);
     injectOtherBanner();
   }
 });
@@ -67,7 +81,7 @@ function injectBanner(bus_name) {
   });
 
   // add FS-banner and FS-banner styling
-  /* 
+  /*
   var s = document.createElement('script');
   s.src = chrome.extension.getURL('banner.js');
   s.onload = function() {
@@ -94,12 +108,11 @@ function injectOtherBanner() {
 
 function loadImageIntoBanner() {
   $(document).ready(function(){
-    var logo_url = chrome.extension.getURL('fivestars_logo_login_white.png'); 
+    var logo_url = chrome.extension.getURL('fivestars_logo_login_white.png');
     console.log(logo_url);
     $("#FS-banner").append("<img src='" + logo_url + "'></img>");
   });
 }
-
 
 
 
