@@ -11,6 +11,14 @@ console.log("hi there!");
 //   console.log(data);
 // });
 
+var styleNode = document.createElement ("style");
+styleNode.type = "text/css";
+styleNode.textContent = "@font-face { font-family: Gotham; src: url('"
+                        + chrome.extension.getURL ("Gotham-Book.otf")
+                        + "'); }"
+                        ;
+document.head.appendChild(styleNode);
+
 var business_name = $(".biz-page-title").text().trim();
 
 // atrocious hax to get lat/long
