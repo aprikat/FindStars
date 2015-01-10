@@ -1,6 +1,17 @@
 <script type="text/javascript">$("#request-button").click(function() {
-      console.log("request button clicked");
-      $.ajax({type: 'POST', url: 'https://fivestarred-api.herokuapp.com/businesses', contentType: 'application/json; charset=utf-8', data: '{"name":"philz-coffee"}', dataType: 'json'});
+    console.log("request button clicked");
+    var business_name = $(".biz-page-title").text().toLowerCase().trim().replace(' ', '-');
+    var bus_url = $(document.URL);
+    console.log(business_name);
+    var request_data = '{"name":"' + business_name + '"}';
+    console.log(request_data);
+    $.ajax({
+        type: 'POST',
+        url: 'https://fivestarred-api.herokuapp.com/businesses',
+        contentType: 'application/json; charset=utf-8',
+        data: request_data,
+        dataType: 'json'});
     });
+    console.log("")
 </script>
-<div id="FS-banner"><div class="row"><h3 style="padding-top:8px;color:white;font-weight:lighter;">This business does not yet accept FiveStars.  <a id="request-button" href="#""  class="ybtn ybtn-primary" style="margin-left:10px;margin-bottom:5px;background-color:#28B2DA !important;background:#28B2DA !important;border-color:#28B2DA !important;text-shadow:none;">Request it!</a></h3></div>
+<div id="FS-banner"><div class="row"><h3 style="padding-top:8px;color:white;font-weight:lighter;">This business does not yet accept FiveStars.  <a id="request-button" href="#" class="ybtn ybtn-primary" style="margin-left:10px;margin-bottom:5px;background-color:#28B2DA !important;background:#28B2DA !important;border-color:#28B2DA !important;text-shadow:none;">Request it!</a></h3></div>

@@ -59,9 +59,6 @@ $.getJSON(fs_url, function( data ) {
     injectBanner();
   }
   else {
-    console.log(business_name);
-    api_business_name = business_name.replace(' ', '-');
-    console.log(api_business_name);
     injectOtherBanner();
   }
 });
