@@ -1,9 +1,8 @@
 <script type="text/javascript">$("#request-button").click(function() {
     console.log("request button clicked");
-    var business_name = $(".biz-page-title").text().toLowerCase().trim().replace(' ', '-');
-    var bus_url = $(document.URL);
-    console.log(business_name);
-    var request_data = '{"name":"' + business_name + '"}';
+    var bus_url = document.URL.split('/').slice(-1)[0];
+    console.log(bus_url);
+    var request_data = '{"name":"' + bus_url + '"}';
     console.log(request_data);
     $.ajax({
         type: 'POST',
