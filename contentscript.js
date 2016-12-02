@@ -35,7 +35,7 @@ var business_long = map_json.longitude;
 
 // url manipulation
 // http://www.fivestars.com/api/v2/businesses?near=37.7758,-122.4128&span=0.025,0.025&q=little%20griddle
-var fs_url = "http://www.fivestars.com/api/v2/businesses?";
+var fs_url = "https://www.fivestars.com/api/v2/businesses?";
 var business_name_q = business_name.replace(' ', '%20');
 fs_url = fs_url.concat("q=" + business_name_q);
 fs_url = fs_url.concat("&near=" + business_lat + "," + business_long);
@@ -59,14 +59,17 @@ $.getJSON(fs_url, function( data ) {
   // $.each(business1, function(key, val) {
     // console.log(key + ": " + val);
   // });
-  match = businesses[0]["name"];
-  match = match.toLowerCase().trim();
-  business_name = business_name.toLowerCase().trim();
-
-  if ((businesses.length > 0) && (match == business_name)) {
-    injectBanner();
+  if (businesses.length > 0) {
+    match = businesses[0]["name"];
+    match = match.toLowerCase().trim();
+    business_name = business_name.toLowerCase().trim();
+    console.log(business_name);
+    if (match == business_name) {
+      injectBanner();
+    }
   }
   else {
+    console.log("no business match");
     injectOtherBanner();
   }
 });
@@ -82,7 +85,7 @@ function injectBanner(bus_name) {
   });
 
   $.get(chrome.extension.getURL('banner.html'), function(data) {
-    $(data).insertBefore('.app-header');
+    $(data).insertBefore('.biz-country-us');
   });
 
   // add FS-banner and FS-banner styling
@@ -106,7 +109,7 @@ function injectOtherBanner() {
   });
 
    $.get(chrome.extension.getURL('otherbanner.html'), function(data) {
-    $(data).insertBefore('.app-header');
+    $(data).insertBefore('.biz-country-us');
   });
 
 }
